@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/record")
+@RequestMapping("/api/v1")
 public class FaceRecordController {
 
-    @RequestMapping("/face2")
+    @RequestMapping("/face4")
     ResponseEntity<FaceResponse> updateFaceRecord2() {
         // userRepo.put(user.getId(), user);
 
@@ -30,7 +30,7 @@ public class FaceRecordController {
         return new ResponseEntity<>(faceResponse, HttpStatus.OK);
     }
 
-    @RequestMapping("/face")
+    @RequestMapping(value = "/stranger", method = RequestMethod.POST)
     ResponseEntity<FaceResponse> updateFaceRecord(@RequestBody FaceRecord faceRecord) {
         // userRepo.put(user.getId(), user);
 
@@ -40,13 +40,33 @@ public class FaceRecordController {
 
         FaceResponse faceResponse = new FaceResponse();
         faceResponse.setContent(null);
-        faceResponse.setMsg("this is the message");
+        faceResponse.setMsg("跟新陌生人成功！");
         faceResponse.setResult(200);
         return new ResponseEntity<>(faceResponse, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/record/face", method = RequestMethod.POST)
+    ResponseEntity<FaceResponse> updateFaceRecordFace(@RequestBody FaceRecord faceRecord) {
+        // userRepo.put(user.getId(), user);
 
-    @RequestMapping("/face1")
+        if (faceRecord.getCount() == 1) {
+
+        }
+
+        FaceResponse faceResponse = new FaceResponse();
+        faceResponse.setContent(null);
+        faceResponse.setMsg("跟新用户成功！");
+        faceResponse.setResult(200);
+        return new ResponseEntity<>(faceResponse, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/face2", method = RequestMethod.GET)
+    public ResponseEntity<String> getChannelById() throws InterruptedException {
+        return new ResponseEntity<>("success.", HttpStatus.OK);
+    }
+
+
+    @RequestMapping("/hello")
     String hello() {
         return "Hello world,I am home";
     }

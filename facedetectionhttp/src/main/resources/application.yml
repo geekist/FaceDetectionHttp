@@ -1,3 +1,5 @@
 
 server:
   port: 8823
+  server.address: 0.0.0.0
+
